@@ -1,0 +1,26 @@
+# Logs
+logs
+*.log
+
+# Compiled Output
+dist
+*.class
+*.js
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables
+.env
+
+# Mac files
+.DS_Store
+
+# TypeScript generated files
+*.tsbuildinfo
+*.ts~
+
+# Visual Studio Code
+.vscode/
+
