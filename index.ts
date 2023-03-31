@@ -26,8 +26,6 @@ connection.connect((err) => {
 
 async function getCountryData(): Promise<void> {
     const baseUrl = 'https://restcountries.com/v2/callingcode/';
-    //Crear un arreglo de paises y llenarlo con los datos de la API
-
     let paises: Pais[] = [];
 
     for (let i = 1; i <= 300; i++) {
@@ -48,9 +46,6 @@ async function getCountryData(): Promise<void> {
                     pais.longitud = countryData.latlng[1] || 0;
 
                     paises.push(pais);
-                    //console.log(JSON.stringify(pais));
-                    //console.log(`${i} - ${pais.nombrePais}\n`);
-                    //await insertPais(pais);
                 }
             }else{
                 continue;
@@ -64,7 +59,6 @@ async function getCountryData(): Promise<void> {
     paises.forEach(p => {
         insertPais(p);
     });
-    //Cerrar la conexión a la base de datos
     connection.end();
 }
 
@@ -73,7 +67,6 @@ async function insertPais(pais: Pais): Promise<void> {
                VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const values = [pais.codigoPais, pais.nombrePais, pais.capitalPais, pais.region, pais.poblacion, pais.latitud, pais.longitud];
     connection.query(query, values, function (err, results, fields) {
-    //connection.query(query, (err) => {
         if (err) {
             console.error('Error inserting pais:' + pais +" - ", err);
             return;
